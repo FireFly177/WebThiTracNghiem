@@ -20,17 +20,57 @@ let registerEmail = document.getElementById("Register-email");
 let registerPassword = document.getElementById("Register-password");
 let registerConfirm = document.getElementById("Register-confirm");
 // let registerUserNameText = registerUserName.value; // Using value property for input field
-registerSubmitButton.addEventListener('click', () => {
-    if (registerPassword.value != registerConfirm.value) {
-        alert("The confirmation password doesn't match!!!")
-    }
-    // let registerConfirm = document.getElementById("Register-confirm");
 
+let check = 0;
+registerSubmitButton.addEventListener('click', () => {
+    // check confimartion password
+    if (registerPassword.value != registerUserName.value) {
+        alert("Your confirmation password doesn't match!!!")
+    }
+
+
+    //Check empty value
+    if (registerUserName.value == null || registerUserName.value.trim() === "") {
+     
+        registerUserName.style.border = "3px solid red";  // Change border to red
+        registerUserName.placeholder = "Please enter a value"
+      
+    } else {
+        registerUserName.style.border = ""; // Reset border to default
+     
+    }
+    if (registerEmail.value == null || registerEmail.value.trim() === "") {
+     
+        registerEmail.style.border = "3px solid red";  // Change border to red
+        registerEmail.placeholder = "Please enter a value"
+      
+    } else {
+        registerEmail.style.border = ""; // Reset border to default
+     
+    }
+    if (registerPassword.value == null || registerPassword.value.trim() === "") {
+     
+        registerPassword.style.border = "3px solid red";  // Change border to red
+        registerPassword.placeholder = "Please enter a value"
+      
+    } else {
+        registerPassword.style.border = ""; // Reset border to default
+     
+    }
     if (registerConfirm.value == null || registerConfirm.value.trim() === "") {
-        registerConfirm.style.background = "red"; // Change border to red
+     
+        registerConfirm.style.border = "3px solid red";  // Change border to red
+        registerConfirm.placeholder = "Please enter a value"
+      
     } else {
         registerConfirm.style.border = ""; // Reset border to default
+     
     }
+    //Check empty value
+
+
+    // Store new account in local storage 
+    localStorage.setItem(registerUserName.value,registerPassword.value);
 
 });
 // || registerEmail == null || registerPassword == null || registerUserName== null
