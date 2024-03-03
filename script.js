@@ -24,7 +24,7 @@ let registerConfirm = document.getElementById("Register-confirm");
 let check = 0;
 registerSubmitButton.addEventListener('click', () => {
     // check confimartion password
-    if (registerPassword.value != registerUserName.value) {
+    if (registerPassword.value != registerConfirm.value) {
         alert("Your confirmation password doesn't match!!!")
     }
 
@@ -33,7 +33,7 @@ registerSubmitButton.addEventListener('click', () => {
     if (registerUserName.value == null || registerUserName.value.trim() === "") {
      
         registerUserName.style.border = "3px solid red";  // Change border to red
-        registerUserName.placeholder = "Please enter a value"
+        registerUserName.placeholder = "Please enter a username"
       
     } else {
         registerUserName.style.border = ""; // Reset border to default
@@ -42,7 +42,7 @@ registerSubmitButton.addEventListener('click', () => {
     if (registerEmail.value == null || registerEmail.value.trim() === "") {
      
         registerEmail.style.border = "3px solid red";  // Change border to red
-        registerEmail.placeholder = "Please enter a value"
+        registerEmail.placeholder = "Please enter a email"
       
     } else {
         registerEmail.style.border = ""; // Reset border to default
@@ -51,7 +51,7 @@ registerSubmitButton.addEventListener('click', () => {
     if (registerPassword.value == null || registerPassword.value.trim() === "") {
      
         registerPassword.style.border = "3px solid red";  // Change border to red
-        registerPassword.placeholder = "Please enter a value"
+        registerPassword.placeholder = "Please enter a password"
       
     } else {
         registerPassword.style.border = ""; // Reset border to default
@@ -60,7 +60,7 @@ registerSubmitButton.addEventListener('click', () => {
     if (registerConfirm.value == null || registerConfirm.value.trim() === "") {
      
         registerConfirm.style.border = "3px solid red";  // Change border to red
-        registerConfirm.placeholder = "Please enter a value"
+        registerConfirm.placeholder = "Please enter the confirmation password"
       
     } else {
         registerConfirm.style.border = ""; // Reset border to default
