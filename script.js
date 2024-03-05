@@ -20,7 +20,6 @@ registerToLogin.addEventListener('click', () => {
 })
 
 // Login
-// Login
 let loginSubmitButton = document.querySelector('.loginSubmitButton'); // Login submit button
 let loginUsernameText = document.getElementById('loginUsernameText'); // Login username field
 let loginPasswordText = document.getElementById('loginPasswordText'); // Password username field
