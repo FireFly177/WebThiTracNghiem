@@ -49,7 +49,6 @@ loginSubmitButton.addEventListener('click', () => {
 });
 // Register
 let registerSubmitButton = document.querySelector(".registerSubmitButton");
-
 let registerUserName = document.getElementById("Register-username");
 let registerEmail = document.getElementById("Register-email");
 let registerPassword = document.getElementById("Register-password");
