@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang chính</title>
+  <link rel="stylesheet" href="./style_mainpage.css">
+</head>
+
+<body>
+    <div class = "banner">
+        <div class="profile">
+            <a href="#" class = "userProfile">Ho so</a>
+        </div>
+        <div class = "logo"></div> 
+        <div class="text">
+            <span>Website luyện thi đại học đẳng cấp nhất Vịnh Bắc Bộ</span>
+        </div>
+    </div>
+
+    <main>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm theo bài kiểm tra">
+            <select id="statusFilter">
+                <option value="">Tất cả trạng thái</option>
+                <option value="free">Có thể truy cập tự do</option>
+                <option value="scheduled">Yêu cầu thời gian cụ thể</option>
+            </select>
+            <button onclick="filterExams()">Lọc</button>
+        </div>
+
+        <ul class="exam-list">
+            <li class="exam-item">
+                <h2>Bài luyện tập</h2>
+                <p>Trạng thái: Có thể truy cập tự do </p>
+                <button onclick="startExam('Luyen tap')">Làm bài</button>
+            </li>
+            <li class="exam-item">
+                <h2>Bài giữa kì</h2>
+                <p>Trạng thái: Yêu cầu thời gian cụ thể </p>
+                <button onclick="startExam('Giua ki')">Làm bài</button>
+            </li>
+            <li class="exam-item">
+                <h2>Bài cuối kì</h2>
+                <p>Trạng thái: Yêu cầu thời gian cụ thể </p>
+                <button onclick="startExam('Cuoi ki')">Làm bài</button>
+            </li>
+        </ul>
+    </main>
+</body>
+<html>

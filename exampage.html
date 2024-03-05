@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang bài thi</title>
+  <link rel="stylesheet" href="./style_exampage.css">
+</head>
+
+<body>
+  <header>
+    <a href="">
+      <img class="logo-image" src="./assets/logo-ptit.png" alt="">
+    </a>
+    <div class="profile">
+      <a href="#" class = "userProfile">Ho so</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Bai thi mon Van</h1>
+    <div id="timer">Thời gian còn lại: <span id="countdown"></span></div>
+    <div id="questions">
+      <!-- Các câu hỏi sẽ được thêm vào đây -->
+    </div>
+    <button id="submit">Nộp bài</button>
+  </main>
+  
+  <script>
+    // JavaScript logic
+    const questions = [
+      {
+        question: "Câu hỏi 1: Đây là câu hỏi số một?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 0 // Index của đáp án đúng trong mảng options
+      },
+      {
+        question: "Câu hỏi 2: Đây là câu hỏi số hai?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 1
+      }
+      // Thêm câu hỏi khác nếu cần
+    ];
+
+    let timeLeft = 300; // Thời gian tính bằng giây (300s = 5 phút)
+
+    function renderQuestions() {
+      const questionsContainer = document.getElementById('questions');
+      questions.forEach((q, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `<p>${q.question}</p>`;
+        const optionsElement = document.createElement('div');
+        optionsElement.classList.add('options');
+        q.options.forEach((opt, optIndex) => {
+          const option = document.createElement('input');
+          option.type = 'radio';
+          option.name = `question${index}`;
+          option.value = optIndex;
+          option.id = `question${index}-option${optIndex}`;
+          optionsElement.appendChild(option);
+          const label = document.createElement('label');
+          label.htmlFor = `question${index}-option${optIndex}`;
+          label.textContent = opt;
+          optionsElement.appendChild(label);
+          optionsElement.appendChild(document.createElement('br'));
+        });
+        questionElement.appendChild(optionsElement);
+        questionsContainer.appendChild(questionElement);
+      });
+    }
+
+    function startTimer() {
+      const countdownElement = document.getElementById('countdown');
+      const timer = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById('submit').click(); // Tự động nộp bài khi hết giờ
+        } else {
+          countdownElement.textContent = formatTime(timeLeft);
+          timeLeft--;
+        }
+      }, 1000);
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
+
+    document.getElementById('submit').addEventListener('click', () => {
+      clearInterval(timer); // Dừng đếm ngược
+      // Xử lý khi nộp bài, kiểm tra câu trả lời và hiển thị thông báo
+    });
+
+    renderQuestions();
+    startTimer();
+  </script>
+</body>
+</html>

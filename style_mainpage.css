@@ -1,0 +1,105 @@
+:root {
+    --red: #9C0001;
+    --black: #220101; 
+    --duskyrose: #BE6E6D;
+    --softpeach: #FFEBEA;
+    --grayblue: #D3DCE5;
+    --metallicblue: #537791;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--white);
+}
+.banner{
+    height: 700px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    background-image: url('./assets/bannerdangcap.jpg');
+}
+.profile{
+    height: 80px;
+    width: 100%;
+    text-align: right;
+}
+.userProfile{
+    text-decoration: none;
+    margin-right: 78px;
+    margin-top: 50px;
+    display: inline-block;
+    padding: 8px;
+    border: 3px solid var(--red);
+    border-radius: 50px;
+}
+.logo{
+    background-image: url('./assets/logo-ptit.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-top: 70px;
+}
+.text{
+    text-align: center;
+    margin-top: 50px;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+button {
+    padding: 10px 20px;
+    background-color: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* thanh tim kiem */
+input[type="text"] {
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+/* thanh chon */
+select {
+    padding: 8px;
+    border-radius: 3px;
+}
+.search-bar{
+    margin-bottom: 20px;
+}
+/* xoa dau cham o dau */
+.exam-list { 
+    list-style-type: none;
+    padding: 0;
+}
+/* chia cac item */
+.exam-item {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: var(--duskyrose);
+}
