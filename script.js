@@ -1,6 +1,8 @@
 // set admin account
+localStorage.clear()
 localStorage.setItem("admin", "123")
-localStorage.setItem("duynguyen", "1772003")
+// localStorage.setItem("duynguyen", "1772003")
+
 
 let loginToRegister = document.querySelector('.login-register'); //from-login-to-register button
 let registerToLogin = document.querySelector('.register-login'); // from register-to-login button
@@ -54,56 +56,73 @@ let registerPassword = document.getElementById("Register-password");
 let registerConfirm = document.getElementById("Register-confirm");
 // let registerUserNameText = registerUserName.value; // Using value property for input field
 
-let check = 0;
 registerSubmitButton.addEventListener('click', () => {
+    let registerSuccess = true;
+
+    if (localStorage.getItem(registerUserName.value) != null) {
+        alert("This username has already been taken!!!")
+        registerSuccess = false;
+    }
     // check confimartion password
     if (registerPassword.value != registerConfirm.value) {
         alert("Your confirmation password doesn't match!!!")
+        registerSuccess = false;
     }
-
 
     //Check empty value
     if (registerUserName.value == null || registerUserName.value.trim() === "") {
-     
+
         registerUserName.style.border = "3px solid red";  // Change border to red
         registerUserName.placeholder = "Please enter a username"
-      
+        registerSuccess = false;
+
     } else {
         registerUserName.style.border = ""; // Reset border to default
-     
+
     }
+
     if (registerEmail.value == null || registerEmail.value.trim() === "") {
-     
+
         registerEmail.style.border = "3px solid red";  // Change border to red
         registerEmail.placeholder = "Please enter a email"
-      
+        registerSuccess = false;
+
     } else {
         registerEmail.style.border = ""; // Reset border to default
-     
+
     }
+
     if (registerPassword.value == null || registerPassword.value.trim() === "") {
-     
+
         registerPassword.style.border = "3px solid red";  // Change border to red
         registerPassword.placeholder = "Please enter a password"
-      
+        registerSuccess = false;
+
     } else {
         registerPassword.style.border = ""; // Reset border to default
-     
+
     }
+
     if (registerConfirm.value == null || registerConfirm.value.trim() === "") {
-     
+
         registerConfirm.style.border = "3px solid red";  // Change border to red
         registerConfirm.placeholder = "Please enter the confirmation password"
-      
+        registerSuccess = false;
+
     } else {
         registerConfirm.style.border = ""; // Reset border to default
-     
+
     }
     //Check empty value
 
 
     // Store new account in local storage 
-    localStorage.setItem(registerUserName.value,registerPassword.value);
+    if (registerSuccess === true) {
+        localStorage.setItem(registerUserName.value, registerPassword.value);
+        alert("Account created successfully!");
+        // console.log(registerSuccess)
+        // console.log(registerUserName.value + " " + registerPassword.value)
+    }
 
 });
 // || registerEmail == null || registerPassword == null || registerUserName== null
