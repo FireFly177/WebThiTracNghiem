@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang chính</title>
-  <link rel="stylesheet" href="./style_mainpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chính</title>
+    <link rel="stylesheet" href="./style_mainpage.css">
 </head>
 
 <body>
-    <div class = "banner">
+    <div class="banner">
         <div class="profile">
-            <a href="#" class = "userProfile">Ho so</a>
+            <a href="#" class="userProfile">Ho so</a>
         </div>
-        <div class = "logo"></div> 
+        <div class="logo"></div>
         <div class="text">
             <span>Website luyện thi đại học đẳng cấp nhất Vịnh Bắc Bộ</span>
         </div>
@@ -21,11 +21,13 @@
 
     <main>
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm theo bài kiểm tra">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm theo bài kiểm tra"
+                onkeydown="searchOnEnter(event)">
+
             <select id="statusFilter">
                 <option value="">Tất cả trạng thái</option>
-                <option value="free">Có thể truy cập tự do</option>
-                <option value="scheduled">Yêu cầu thời gian cụ thể</option>
+                <option value="Có thể truy cập tự do">Có thể truy cập tự do</option>
+                <option value="Yêu cầu thời gian cụ thể">Yêu cầu thời gian cụ thể</option>
             </select>
             <button onclick="filterExams()">Lọc</button>
         </div>
@@ -33,20 +35,65 @@
         <ul class="exam-list">
             <li class="exam-item">
                 <h2>Bài luyện tập</h2>
-                <p>Trạng thái: Có thể truy cập tự do </p>
+                <p class="status">Trạng thái: Có thể truy cập tự do</p>
                 <button onclick="startExam('Luyen tap')">Làm bài</button>
             </li>
             <li class="exam-item">
                 <h2>Bài giữa kì</h2>
-                <p>Trạng thái: Yêu cầu thời gian cụ thể </p>
+                <p class="status">Trạng thái: Yêu cầu thời gian cụ thể</p>
                 <button onclick="startExam('Giua ki')">Làm bài</button>
             </li>
             <li class="exam-item">
                 <h2>Bài cuối kì</h2>
-                <p>Trạng thái: Yêu cầu thời gian cụ thể </p>
+                <p class="status">Trạng thái: Yêu cầu thời gian cụ thể</p>
                 <button onclick="startExam('Cuoi ki')">Làm bài</button>
             </li>
         </ul>
     </main>
+    <script>
+        function searchOnEnter(event) {
+            if (event.key === "Enter") {
+                search();
+            }
+        }
+
+        function search() {
+            var searchText = document.getElementById("searchInput").value.toLowerCase();
+            var examItems = document.querySelectorAll(".exam-item");
+
+            examItems.forEach(function (item) {
+                var title = item.querySelector("h2").textContent.toLowerCase();
+                if (title.includes(searchText)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+
+        function filterExams() {
+            // Get the selected status value from the dropdown menu
+            var selectedStatus = document.getElementById("statusFilter").value;
+            // Get all the exam items
+            var examItems = document.querySelectorAll(".exam-item");
+            // Loop through each exam item
+            examItems.forEach(function (item) {
+                // Get the status paragraph inside each exam item
+                var statusPara = item.querySelector("p");
+                // Get the status text
+                var statusText = statusPara.textContent.trim().split(":")[1].trim();
+                // Check if the selected status matches the status of the current exam item
+                if (selectedStatus === "" || statusText === selectedStatus) {
+                    // Show the exam item if it matches the selected status or if no status is selected
+                    item.style.display = "block";
+                } else {
+                    // Hide the exam item if it doesn't match the selected status
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
-<html>
+
+</html>
