@@ -74,7 +74,7 @@ registerSubmitButton.addEventListener('click', () => {
 
 
     // Store new account in local storage 
-    if (registerSuccess = true) {
+    if (registerSuccess === true) {
         localStorage.setItem(registerUserName.value, registerPassword.value);
         // console.log(registerUserName.value + " " + registerPassword.value)
     }
