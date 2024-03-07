@@ -1,7 +1,13 @@
-// set admin account
 localStorage.clear()
-localStorage.setItem("admin", "123")
-// localStorage.setItem("duynguyen", "1772003")
+// Set admin account in localStorage
+let adminUser = {
+    username: 'admin',
+    password: 'admin236980',
+    email: '',
+    exams: []
+}
+let Users = [adminUser]
+localStorage.setItem('Users', JSON.stringify(Users));
 
 
 let loginToRegister = document.querySelector('.login-register'); //from-login-to-register button
@@ -27,21 +33,22 @@ let loginUsernameText = document.getElementById('loginUsernameText'); // Login u
 let loginPasswordText = document.getElementById('loginPasswordText'); // Password username field
 
 loginSubmitButton.addEventListener('click', () => {
+    let username = loginUsernameText.value;
+    let password = loginPasswordText.value;
+    let Users = JSON.parse(localStorage.getItem('Users'));
     // Check if username is 'admin'
-    if (loginUsernameText.value === 'admin') {
-        if (loginPasswordText.value === localStorage.getItem('admin')) {
+    if (username === 'admin') {
+        let adminUser = Users.find(user => user.username === 'admin');
+        if (adminUser.password === password) {
             alert("Logged in as Admin. You have full privileges.");
         } else {
             alert("Wrong username or password.");
         }
     } else {
         // Regular user login
-        let username = loginUsernameText.value;
-        let password = loginPasswordText.value;
-        
-        // Check if stored password matches entered password
-        if (localStorage.getItem(username) === password) {
-            alert(`Logged in as ${username}.`);
+        let user = Users.find(user => user.username === username);
+        if (user && user.password === password) {
+            alert(`Logged in as ${user.username}.`);
         } else {
             alert("Wrong username or password.");
         }
@@ -57,8 +64,10 @@ let registerConfirm = document.getElementById("Register-confirm");
 
 registerSubmitButton.addEventListener('click', () => {
     let registerSuccess = true;
+    let Users = JSON.parse(localStorage.getItem('Users'));
 
-    if (localStorage.getItem(registerUserName.value) != null) {
+    // Check if the username is already taken
+    if (Users.some(user => user.username === registerUserName.value)) {
         alert("This username has already been taken!!!")
         registerSuccess = false;
     }
@@ -117,10 +126,16 @@ registerSubmitButton.addEventListener('click', () => {
 
     // Store new account in local storage 
     if (registerSuccess === true) {
-        localStorage.setItem(registerUserName.value, registerPassword.value);
+        let newUser = {
+            username: registerUserName.value,
+            password: registerPassword.value,
+            email: registerEmail.value,
+            exams: []
+        };
+        Users.push(newUser);
+
+        localStorage.setItem('Users', JSON.stringify(Users));
         alert("Account created successfully!");
-        // console.log(registerSuccess)
-        // console.log(registerUserName.value + " " + registerPassword.value)
     }
 
 });
