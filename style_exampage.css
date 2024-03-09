@@ -32,7 +32,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
     min-height: 100vh;
 }
 main {
@@ -42,4 +41,54 @@ main {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    margin-top: 8rem;
+}
+h1{
+    padding: 5px;
+    margin: 5px;
+    width: 760px;
+    text-align: center;
+}
+div#timer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 8rem;
+    margin-right: 4rem;
+}
+.timer-label {
+    display: block; 
+    margin-bottom: 0.5rem; 
+}
+
+#countdown {
+    /* Chinh thoi gian dem nguoc */
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--metallicblue);
+}
+.question{
+    padding-top: 1rem;
+}
+.question input{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid var(--red);
+}
+p.question-text {
+    margin-bottom: 1rem;
+}
+.option-input{
+    margin-bottom: 1rem;
+    margin-right: 8px;
+}
+.option-label{
+    margin-bottom: 1rem;
+
 }
