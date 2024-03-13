@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kết Quả Bài Thi</title>
+  <link rel="stylesheet" href="./style_resultpage.css">
+</head>
+
+<body>
+  <header>
+    <a href="">
+      <img class="logo-image" src="./assets/logo-ptit.png" alt="">
+    </a>
+    <div class="profile">
+      <a href="#" class="userProfile">Hồ sơ</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Kết Quả Bài Thi</h1>
+    <div id="result-summary">
+      <!-- Số câu trả lời đúng và tổng số câu sẽ được hiển thị tại đây -->
+    </div>
+    <div id="score">
+      <!-- Điểm số sẽ được hiển thị tại đây -->
+    </div>
+    <div id="answer-details">
+      <!-- Chi tiết về câu trả lời và đáp án đúng sẽ được hiển thị tại đây -->
+    </div>
+  </main>
+
+  <script>
+    // JavaScript logic
+    const questions = [
+      // Danh sách các câu hỏi, options và câu trả lời đúng
+      {
+        question: "Câu hỏi 1: Đây là câu hỏi số một?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 0 // Index của đáp án đúng trong mảng options
+      },
+      {
+        question: "Câu hỏi 1: Đây là câu hỏi số một?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 0 // Index của đáp án đúng trong mảng options
+      },
+      {
+        question: "Câu hỏi 1: Đây là câu hỏi số một?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 0 // Index của đáp án đúng trong mảng options
+      },
+      {
+        question: "Câu hỏi 1: Đây là câu hỏi số một?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 0 // Index của đáp án đúng trong mảng options
+      },
+      {
+        question: "Câu hỏi 1: Đây là câu hỏi số một?",
+        options: ["Đáp án A", "Đáp án B", "Đáp án C"],
+        answer: 0 // Index của đáp án đúng trong mảng options
+      }
+    ];
+
+    // Lấy danh sách câu trả lời của người dùng và tính toán kết quả
+    function calculateResult() {
+      let correctAnswers = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+        if (selectedOption !== null && parseInt(selectedOption.value) === q.answer) {
+          correctAnswers++;
+        }
+      });
+      return correctAnswers;
+    }
+
+    // Hiển thị kết quả tổng quan của bài thi
+    function showResult() {
+      const totalQuestions = questions.length;
+      const correctAnswers = calculateResult();
+      const score = (correctAnswers / totalQuestions) * 10; // Điểm số dựa trên tỉ lệ câu trả lời đúng
+
+      const resultSummary = document.getElementById('result-summary');
+      resultSummary.innerHTML = `<p>Số câu trả lời đúng: ${correctAnswers} / ${totalQuestions}</p>`;
+
+      const scoreElement = document.getElementById('score');
+      scoreElement.innerHTML = `<p>Điểm số: ${score}</p>`;
+
+      const answerDetails = document.getElementById('answer-details');
+      questions.forEach((q, index) => {
+        const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+        const userAnswer = selectedOption ? q.options[parseInt(selectedOption.value)] : 'Không trả lời';
+        const correctAnswer = q.options[q.answer];
+        answerDetails.innerHTML += `<p>Câu ${index + 1}: Câu trả lời của bạn: ${userAnswer}. Đáp án đúng: ${correctAnswer}</p>`;
+      });
+    }
+
+    window.onload = function() {
+      showResult();
+    };
+  </script>
+</body>
+
+</html>

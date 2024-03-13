@@ -46,6 +46,13 @@
     margin: auto;
     margin-top: 70px;
 }
+.dancing-script-font{
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+}
 .text{
     text-align: center;
     margin-top: 50px;
