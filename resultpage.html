@@ -43,7 +43,7 @@
       {
         question: "Câu hỏi 1: Đây là câu hỏi số một?",
         options: ["Đáp án A", "Đáp án B", "Đáp án C"],
-        answer: 0 // Index của đáp án đúng trong mảng options
+        answer: 1 // Index của đáp án đúng trong mảng options
       },
       {
         question: "Câu hỏi 1: Đây là câu hỏi số một?",
@@ -53,12 +53,12 @@
       {
         question: "Câu hỏi 1: Đây là câu hỏi số một?",
         options: ["Đáp án A", "Đáp án B", "Đáp án C"],
-        answer: 0 // Index của đáp án đúng trong mảng options
+        answer: 2 // Index của đáp án đúng trong mảng options
       },
       {
         question: "Câu hỏi 1: Đây là câu hỏi số một?",
         options: ["Đáp án A", "Đáp án B", "Đáp án C"],
-        answer: 0 // Index của đáp án đúng trong mảng options
+        answer: 1 // Index của đáp án đúng trong mảng options
       }
     ];
 
@@ -81,8 +81,9 @@
       const score = (correctAnswers / totalQuestions) * 10; // Điểm số dựa trên tỉ lệ câu trả lời đúng
 
       const resultSummary = document.getElementById('result-summary');
-      resultSummary.innerHTML = `<p>Số câu trả lời đúng: ${correctAnswers} / ${totalQuestions}</p>`;
-
+      const fullName = "Nguyễn Thị A"; // Thay đổi thành họ tên thực của thí sinh
+      resultSummary.innerHTML = `<p>Thí sinh: ${fullName}</p>
+                                 <p>Số câu trả lời đúng: ${correctAnswers} / ${totalQuestions}</p>`;
       const scoreElement = document.getElementById('score');
       scoreElement.innerHTML = `<p>Điểm số: ${score}</p>`;
 
