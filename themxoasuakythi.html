@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo/Chỉnh sửa bài thi</title>
+    <style>.input-question {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .filter {
+        display: flex;
+        align-items: center;
+      }
+      .filter .btn_add {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: black;
+        background-color: white;
+        border: 2px solid rgba(214, 20, 10, 0.8431372549);
+        border-radius: 1rem;
+        padding: 0.5rem 1.4rem;
+        margin-left: 1.4rem;
+      }
+      
+      .modal-content {
+        border-radius: 1rem;
+        padding: 3rem;
+      }
+      .modal-header {
+        padding: 0;
+        border: none !important;
+      }
+      .modal-header h1 {
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 2.2rem;
+      }
+      .modal .btn-close {
+        margin: 0 0.5rem;
+        padding: 0.5rem;
+        font-size: 1.4rem;
+      }
+      .modal-body {
+        padding: 0;
+      }
+      .modal-body #examForm .time {
+        display: flex !important;
+        justify-content: space-between;
+      }
+      .modal-body #examForm .header_list_question {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        margin-left: 0.6rem;
+      }
+      .modal-body #examForm .form-group {
+        margin-bottom: 1.4rem;
+      }
+      .modal-body #examForm .form-group label {
+        font-weight: 500;
+        font-size: 1.5rem;
+        margin-left: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+      .modal-body #examForm .form-group input,
+      .modal-body #examForm .form-group textarea {
+        font-size: 1.4rem;
+        padding: 0.8rem 1rem;
+        border-radius: 1rem;
+        border: 2px solid rgba(128, 128, 128, 0.237);
+      }
+      .modal-body #examForm .form-group select {
+        font-size: 1.3rem;
+        font-weight: 500;
+        border: 2px solid rgba(128, 128, 128, 0.237);
+        border-radius: 1rem;
+        padding: 0.8rem 1.4rem;
+      }
+      .modal-body #examForm .form-group select option {
+        font-weight: inherit;
+      }
+      .modal-body #examForm .form-group label[for=examStart],
+      .modal-body #examForm .form-group label[for=examEnd] {
+        min-width: 80px;
+      }
+      .modal-body #examForm .question_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-body #examForm .question_container .input-question button,
+      .modal-body #examForm .question_container .input-question label {
+        font-size: 1.2rem;
+        border-radius: 0.6rem;
+        padding: 0.6rem 1.4rem;
+      }
+      .modal-body #examForm .question_container .input-question button {
+        background-color: #0d6efd;
+      }
+      .modal-body #examForm .question_container .input-question label {
+        color: white;
+        background-color: rgb(15, 188, 15);
+        margin-left: 1rem;
+      }
+      
+      .modal-footer {
+        border-top: 2px solid rgba(128, 128, 128, 0.237);
+        padding: 1rem 0 0 0;
+        margin-top: 1rem;
+      }
+      .modal-footer button {
+        margin: 0;
+        font-size: 1.2rem;
+        border-radius: 0.6rem;
+        padding: 0.8rem 1.6rem;
+      }
+      .modal-footer button:first-child {
+        margin-right: 2rem;
+      }
+      
+      .question-form {
+        margin-top: 2rem;
+      }
+      .question-form h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+      }
+      .question-form input {
+        font-size: 1.5rem;
+        padding: 1.2rem;
+        margin-bottom: 1.2rem;
+        border: 2px solid rgba(128, 128, 128, 0.237);
+      }
+      .question-form button {
+        padding: 0.9rem 1.6rem;
+      }
+      
+      .btn_view_static {
+        font-weight: 600;
+        border: none;
+        outline: none;
+        background-color: transparent;
+      }
+      .btn_view_static:hover {
+        text-decoration: underline;
+      }
+      
+      /*# sourceMappingURL=admin-examlist.css.map */
+      </style>
+</head>
+
+<body>
+    <main>
+        <!-- Modal -->
+        <div class="modal fade" id="newExamModal" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Thêm bài thi mới</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="font-size: large">
+                        <form id="examForm">
+                            <div class="form-group">
+                                <label for="examName">Tên Bài Thi:</label>
+                                <input type="text" class="form-control" id="examName" name="examName" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="examDescription">Mô Tả:</label>
+                                <textarea class="form-control" id="examDescription" name="examDescription" rows="4"
+                                    required></textarea>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <div class="form-group flex-grow-1" style="margin-right: 2rem">
+                                    <label for="examType">Loại:</label>
+                                    <select class="form-control" id="examType" name="examType" required>
+                                        <option value="tudo">Tự Do</option>
+                                        <option value="thoigian">
+                                            Thời Gian Cụ Thể
+                                        </option>
+                                    </select>
+                                </div>
+                                <div id="timeLimitContainer" class="form-group hidden flex-grow-1">
+                                    <label for="examTimeLimit">Thời lượng (phút):</label>
+                                    <input type="number" class="form-control" id="examTimeLimit" name="examTimeLimit"
+                                        min="1" />
+                                </div>
+                            </div>
+
+                            <div class="time">
+                                <div class="form-group">
+                                    <label for="examStart">Bắt đầu:</label>
+                                    <input type="datetime-local" id="examStart" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="examEnd">Kết thúc:</label>
+                                    <input type="datetime-local" id="examEnd" />
+                                </div>
+                            </div>
+                            <div class="question_container">
+                                <span class="header_list_question">Danh sách câu hỏi</span>
+                                <div class="input-question">
+                                    <!-- Thêm một button mới để thêm câu hỏi -->
+                                    <button type="button" class="btn btn-success" onclick="addQuestionForm()">
+                                        Thêm Câu Hỏi
+                                    </button>
+                                    <label for="excelFile">Thêm từ excel</label>
+                                    <input type="file" class="form-control-file" id="excelFile" accept=".xls, .xlsx"
+                                        hidden />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Hủy
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Lưu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <script>
+        function addQuestion() {
+            // Thêm mới một câu hỏi vào form
+            var questionContainer = document.createElement('div');
+            questionContainer.classList.add('question');
+
+            var questionText = document.createElement('textarea');
+            questionText.classList.add('question-text');
+            questionText.rows = 2;
+            questionText.required = true;
+
+            var answerOptions = document.createElement('textarea');
+            answerOptions.classList.add('answer-options');
+            answerOptions.rows = 3;
+            answerOptions.required = true;
+
+            var removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.innerText = 'Xóa câu hỏi';
+            removeButton.onclick = function () {
+                removeQuestion(this);
+            };
+
+            questionContainer.appendChild(document.createElement('hr'));
+            questionContainer.appendChild(document.createElement('br'));
+            questionContainer.appendChild(document.createElement('hr'));
+            questionContainer.appendChild(document.createElement('br'));
+            questionContainer.appendChild(questionText);
+            questionContainer.appendChild(document.createElement('br'));
+            questionContainer.appendChild(document.createElement('br'));
+            questionContainer.appendChild(answerOptions);
+            questionContainer.appendChild(document.createElement('br'));
+            questionContainer.appendChild(removeButton);
+
+            document.querySelector('form').appendChild(questionContainer);
+        }
+
+        function removeQuestion(button) {
+            // Xóa câu hỏi khỏi form
+            var questionContainer = button.parentElement;
+            questionContainer.parentElement.removeChild(questionContainer);
+        }
+    </script>
+</body>
+
+</html>

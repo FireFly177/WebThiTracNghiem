@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thống kê</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #9C0001;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #9C0001;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #9C0001;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Trang Thống kê</h1>
+    </header>
+
+    <main>
+        <h2>Bảng thống kê kết quả bài thi</h2>
+
+        <!-- Dữ liệu mẫu, bạn cần thay thế bằng dữ liệu thực tế -->
+        <table id="resultTable">
+            <tr>
+                <th>Kỳ thi</th>
+                <th>Tổng số lần tham gia</th>
+                <th>Tỷ lệ hoàn thành</th>
+                <th>Điểm trung bình</th>
+            </tr>
+            <tr>
+                <td>Bài luyện tập</td>
+                <td>74</td>
+                <td>85%</td>
+                <td>7.0</td>
+            </tr>
+            <tr>
+                <td>Bài thi giữa kỳ</td>
+                <td>40</td>
+                <td>95%</td>
+                <td>8.5</td>
+            </tr><tr>
+                <td>Bài thi cuối kì</td>
+                <td>42</td>
+                <td>100%</td>
+                <td>6.5</td>
+            </tr>
+        </table>
+
+        <button onclick="exportToPDF()">Xuất file PDF</button>
+        <button onclick="exportToExcel()">Xuất file Excel</button>
+    </main>
+
+    <!-- Thư viện jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- Thư viện SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+    <script>
+        function exportToPDF() {
+            const doc = new jsPDF();
+            doc.autoTable({ html: '#resultTable' });
+            doc.save('result.pdf');
+        }
+
+        function exportToExcel() {
+            const ws = XLSX.utils.table_to_sheet(document.getElementById('resultTable'));
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'result.xlsx');
+        }
+    </script>
+</body>
+</html>
