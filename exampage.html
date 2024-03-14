@@ -14,7 +14,7 @@
       <img class="logo-image" src="./assets/logo-ptit.png" alt="">
     </a>
     <div class="profile">
-      <a href="#" class = "userProfile">Ho so</a>
+      <a href="#" class="userProfile">Ho so</a>
     </div>
   </header>
 
@@ -29,9 +29,12 @@
     <div id="questions">
       <!-- Các câu hỏi sẽ được thêm vào đây -->
     </div>
-    <button id="submit">Nộp bài</button>
+    <button id="submit" onclick="submit()">Nộp bài</button>
+    <div id="result">
+      <p>Điểm của bạn là: <strong>00</strong></p>
+    </div>
   </main>
-  
+
   <script>
     // JavaScript logic
     const questions = [
@@ -199,13 +202,26 @@
       return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     }
 
-    document.getElementById('submit').addEventListener('click', () => {
+    // Xử lý khi nộp bài, kiểm tra câu trả lời và hiển thị thông báo
+    function submit() {
+      document.getElementById('result').style.display = 'block'; // Show the result div
       clearInterval(timer); // Dừng đếm ngược
-      // Xử lý khi nộp bài, kiểm tra câu trả lời và hiển thị thông báo
-    });
+      let correctAnswers = 0;
+      const answers = document.querySelectorAll('input[type="radio"]:checked');
+      answers.forEach(answer => {
+        const questionIndex = answer.name.replace('question', '');
+        const selectedOptionIndex = parseInt(answer.value);
+        if (selectedOptionIndex === questions[questionIndex].answer) {
+          correctAnswers++;
+        }
+      });
+      const score = ((correctAnswers / questions.length) * 10).toFixed(2); // Round to two decimal places
+      document.querySelector('#result strong').textContent = `${score}`;
+    }
 
     renderQuestions();
     startTimer();
   </script>
 </body>
+
 </html>

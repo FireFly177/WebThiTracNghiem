@@ -91,4 +91,7 @@ p.question-text {
 .option-label{
     margin-bottom: 1rem;
 
-}
+}#result {
+    display: none;
+  }
+  
