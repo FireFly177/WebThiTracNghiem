@@ -1,0 +1,94 @@
+:root {
+    --red: #9C0001;
+    --black: #220101; 
+    --duskyrose: #BE6E6D;
+    --softpeach: #FFEBEA;
+    --grayblue: #D3DCE5;
+    --metallicblue: #537791;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--red);
+}
+.logo-image {
+    width: 50px; /* Điều chỉnh kích thước hình ảnh logo nếu cần */
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 8rem;
+}
+h1{
+    padding: 5px;
+    margin: 5px;
+    width: 760px;
+    text-align: center;
+}
+div#timer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 8rem;
+    margin-right: 4rem;
+}
+.timer-label {
+    display: block; 
+    margin-bottom: 0.5rem; 
+}
+
+#countdown {
+    /* Chinh thoi gian dem nguoc */
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--metallicblue);
+}
+.question{
+    padding-top: 1rem;
+}
+.question input{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid var(--red);
+}
+p.question-text {
+    margin-bottom: 1rem;
+}
+.option-input{
+    margin-bottom: 1rem;
+    margin-right: 8px;
+}
+.option-label{
+    margin-bottom: 1rem;
+
+}

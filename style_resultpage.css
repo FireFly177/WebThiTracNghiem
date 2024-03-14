@@ -1,0 +1,54 @@
+:root {
+    --red: #9C0001;
+    --black: #220101; 
+    --duskyrose: #BE6E6D;
+    --softpeach: #FFEBEA;
+    --grayblue: #D3DCE5;
+    --metallicblue: #537791;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--red);
+}
+.logo-image {
+    width: 50px; /* Điều chỉnh kích thước hình ảnh logo nếu cần */
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 8rem;
+}
+h1{
+    padding: 5px;
+    margin: 5px;
+    width: 760px;
+    text-align: center;
+}
+p {
+    padding: 1rem;
+}
