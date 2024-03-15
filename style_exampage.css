@@ -93,5 +93,12 @@ p.question-text {
 
 }#result {
     display: none;
-  }
-  
+}
+button#submit {
+    padding: 10px 20px;
+    background-color: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

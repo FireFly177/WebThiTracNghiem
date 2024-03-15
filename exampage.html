@@ -155,32 +155,32 @@
     let timeLeft = 1200; // Thời gian tính bằng giây (300s = 5 phút)
 
     function renderQuestions() {
-    const questionsContainer = document.getElementById('questions');
-    questions.forEach((q, index) => {
-      const questionElement = document.createElement('div');
-      questionElement.classList.add('question');
-      questionElement.innerHTML = `<p class="question-text">${q.question}</p>`;
-      const optionsElement = document.createElement('div');
-      optionsElement.classList.add('options');
-      q.options.forEach((opt, optIndex) => {
-        const option = document.createElement('input');
-        option.type = 'radio';
-        option.name = `question${index}`;
-        option.value = optIndex;
-        option.id = `question${index}-option${optIndex}`;
-        option.classList.add('option-input'); // Add class for styling
-        optionsElement.appendChild(option);
-        const label = document.createElement('label');
-        label.htmlFor = `question${index}-option${optIndex}`;
-        label.textContent = opt;
-        label.classList.add('option-label'); // Add class for styling
-        optionsElement.appendChild(label);
-        optionsElement.appendChild(document.createElement('br'));
+      const questionsContainer = document.getElementById('questions');
+      questions.forEach((q, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `<p class="question-text">${q.question}</p>`;
+        const optionsElement = document.createElement('div');
+        optionsElement.classList.add('options');
+        q.options.forEach((opt, optIndex) => {
+          const option = document.createElement('input');
+          option.type = 'radio';
+          option.name = `question${index}`;
+          option.value = optIndex;
+          option.id = `question${index}-option${optIndex}`;
+          option.classList.add('option-input'); // Add class for styling
+          optionsElement.appendChild(option);
+          const label = document.createElement('label');
+          label.htmlFor = `question${index}-option${optIndex}`;
+          label.textContent = opt;
+          label.classList.add('option-label'); // Add class for styling
+          optionsElement.appendChild(label);
+          optionsElement.appendChild(document.createElement('br'));
+        });
+        questionElement.appendChild(optionsElement);
+        questionsContainer.appendChild(questionElement);
       });
-      questionElement.appendChild(optionsElement);
-      questionsContainer.appendChild(questionElement);
-    });
-  }
+    }
 
 
     function startTimer() {
@@ -201,7 +201,10 @@
       const remainingSeconds = seconds % 60;
       return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     }
-
+    function goBack() {
+      window.location.href = "mainpage.html";
+    }
+    // let examData = [];
     // Xử lý khi nộp bài, kiểm tra câu trả lời và hiển thị thông báo
     function submit() {
       document.getElementById('result').style.display = 'block'; // Show the result div
@@ -211,12 +214,15 @@
       answers.forEach(answer => {
         const questionIndex = answer.name.replace('question', '');
         const selectedOptionIndex = parseInt(answer.value);
-        if (selectedOptionIndex === questions[questionIndex].answer) {
-          correctAnswers++;
-        }
+
+        // if (selectedOptionIndex === questions[questionIndex].answer) {
+        //   correctAnswers++;
+        // }
+        // examData.push([questionIndex, selectedOptionIndex]);
+        localStorage.setItem(questionIndex,selectedOptionIndex);
       });
-      const score = ((correctAnswers / questions.length) * 10).toFixed(2); // Round to two decimal places
-      document.querySelector('#result strong').textContent = `${score}`;
+      window.location.href = "resultpage.html";
+      
     }
 
     renderQuestions();

@@ -41,6 +41,7 @@ loginSubmitButton.addEventListener('click', () => {
         let adminUser = Users.find(user => user.username === 'admin');
         if (adminUser.password === password) {
             alert("Logged in as Admin. You have full privileges.");
+            window.location.href = "admindashboard.html";
         } else {
             alert("Wrong username or password.");
         }
@@ -49,6 +50,7 @@ loginSubmitButton.addEventListener('click', () => {
         let user = Users.find(user => user.username === username);
         if (user && user.password === password) {
             alert(`Logged in as ${user.username}.`);
+            window.location.href = "mainpage.html";
         } else {
             alert("Wrong username or password.");
         }
@@ -80,8 +82,7 @@ registerSubmitButton.addEventListener('click', () => {
     //Check empty value
     if (registerUserName.value == null || registerUserName.value.trim() === "") {
 
-        registerUserName.style.border = "3px solid red";  // Change border to red
-        registerUserName.placeholder = "Please enter a username"
+
         registerSuccess = false;
 
     } else {
@@ -91,36 +92,24 @@ registerSubmitButton.addEventListener('click', () => {
 
     if (registerEmail.value == null || registerEmail.value.trim() === "") {
 
-        registerEmail.style.border = "3px solid red";  // Change border to red
-        registerEmail.placeholder = "Please enter a email"
+
         registerSuccess = false;
 
-    } else {
-        registerEmail.style.border = ""; // Reset border to default
-
-    }
+    } 
 
     if (registerPassword.value == null || registerPassword.value.trim() === "") {
 
-        registerPassword.style.border = "3px solid red";  // Change border to red
-        registerPassword.placeholder = "Please enter a password"
+
         registerSuccess = false;
 
-    } else {
-        registerPassword.style.border = ""; // Reset border to default
-
-    }
+    } 
 
     if (registerConfirm.value == null || registerConfirm.value.trim() === "") {
 
-        registerConfirm.style.border = "3px solid red";  // Change border to red
-        registerConfirm.placeholder = "Please enter the confirmation password"
+
         registerSuccess = false;
 
-    } else {
-        registerConfirm.style.border = ""; // Reset border to default
-
-    }
+    } 
     //Check empty value
 
 
